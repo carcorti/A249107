@@ -2,13 +2,19 @@
 
 Carlo Corti · Independent researcher · carlo.corti@outlook.com
 
-Local first-publication candidate. The intended release is
-`v1.0`; the DOI in CITATION.cff is a deliberate placeholder. No public release
-or Zenodo deposit is asserted. Cite the article and software using
-CITATION.cff; its release label, date and DOI remain provisional.
+Release **v1.0.1**. Public repository:
+[carcorti/A249107](https://github.com/carcorti/A249107).
+The persistent [Zenodo concept DOI](https://doi.org/10.5281/zenodo.23534992)
+identifies the release series. Each deposited release has a separate
+version-specific DOI; the initial v1.0 deposit is
+[10.5281/zenodo.23534993](https://doi.org/10.5281/zenodo.23534993).
+Cite the article and software using `CITATION.cff`, including the software
+version when referring to this exact package. The complete package, including
+the manuscript and PDF, is distributed under the [MIT license](LICENSE).
 
-The [monolithic English manuscript](paper/A249107_v4.tex) proves the homothetic
-classification and describes the exact computational extension of the integers
+The [monolithic English manuscript](paper/A249107.tex) and
+[corresponding PDF](paper/A249107.pdf) present the homothetic
+classification and describe the exact computational extension of the integers
 `n >= 2` for which `n^2 + D(n)^2 + ... + D^5(n)^2` is a square.
 `D` is the arithmetic derivative, iterated by composition, with `D(0)=D(1)=0`.
 Later zero coordinates are allowed. There is no primitivity or family filter.
@@ -32,7 +38,7 @@ Every retained file serves a build, claim, verification or attribution need:
 
 | File | Purpose |
 | --- | --- |
-| `paper/A249107_v4.tex` | Complete proofs, tables and inline bibliography; no external figures or bibliography files |
+| `paper/A249107.tex`, `paper/A249107.pdf` | Complete proofs, tables and inline bibliography, as source and matching PDF; no external figures or bibliography files |
 | `src/a249107.c`, `src/Makefile` | Production algorithm and public build/check entry points |
 | `data/b249107.txt` | Canonical 16 index/value pairs |
 | `data/a249107.txt` | Canonical documentary witnesses: `i n D(n) D^2(n) D^3(n) D^4(n) D^5(n) root` |
@@ -42,7 +48,7 @@ Every retained file serves a build, claim, verification or attribution need:
 | `check/finite_audit.py` | Exact original finite manuscript arithmetic; driver adapts locations only |
 | `evid/run.tgz` | Complete production records, receipts, historical build/binary/baseline and environments |
 | `evid/dev.tgz` | Original development harness/fixtures and final raw reports supporting the paper's bounded validation claims |
-| `CITATION.cff`, `LICENSE`, `checks.sha256`, `README.md` | Attribution, existing MIT grant, integrity inventory and reproduction instructions |
+| `CITATION.cff`, `LICENSE`, `.gitignore`, `checks.sha256`, `README.md` | Attribution, existing MIT grant, generated-file exclusions, integrity inventory and reproduction instructions |
 
 The a-file is a documentary witness table, not a sparse list of later indexed
 terms. Both canonical text files end with exactly one empty final line.
@@ -53,7 +59,8 @@ obsolete drafts are omitted. Third-party articles are cited in the paper.
 The eight-character basename limit applies to ordinary payload files and
 directory components, including archive members. **TeX manuscripts and C/Python
 program files are exceptions:** they retain their conventional meaningful names.
-The manuscript is `A249107_v4.tex`; original programs include `finite_audit.py`,
+The author-requested repository control file `.gitignore` is also an explicit
+exception. The manuscript is `A249107.tex`; original programs include `finite_audit.py`,
 `tsan_controls.c` and `io_faults.c`. Archive indexes record original paths,
 sizes, hashes, modes and roles. Historical layouts are restored in scratch
 storage outside this payload.
@@ -141,7 +148,9 @@ Makefile  a6ec2b3a2fc82f00c279ff26d85131fc4d59f2b4579d0be754673f54fd517067
 Binary    d98336668ed0298aa248c99dd58f33d7067ae1ece5456d1ef6944717c6b4a9e1
 ```
 
-Current public bytes are identified by `checks.sha256`. Archive indexes retain
+Current public bytes, including the TeX source, PDF and `.gitignore`, are
+identified by `checks.sha256`. It covers every payload file except itself;
+from the package root, run `sha256sum -c checks.sha256` to verify them. Archive indexes retain
 all historical member identities. Source and Makefile must remain beside the
 executable because its runtime identity checks require both. A different
 toolchain can produce a different executable hash.
@@ -153,18 +162,21 @@ intra-input resumability. The archived campaigns are complete read-only evidence
 
 ## Manuscript and compressed evidence
 
-With TeX Live and the standard packages listed by the source, check the
-manuscript twice without producing a PDF:
+The delivered PDF is built from `paper/A249107.tex`. With TeX Live and the
+packages listed in that source, rebuild outside the package to keep auxiliary
+files out of the strict integrity inventory:
 
 ```sh
-mkdir /tmp/a249107-tex
-pdflatex -interaction=nonstopmode -halt-on-error -draftmode -output-directory=/tmp/a249107-tex paper/A249107_v4.tex
-pdflatex -interaction=nonstopmode -halt-on-error -draftmode -output-directory=/tmp/a249107-tex paper/A249107_v4.tex
+texout=$(mktemp -d /tmp/a249107-tex.XXXXXXXX)
+pdflatex -interaction=nonstopmode -halt-on-error -file-line-error -output-directory="$texout" paper/A249107.tex
+pdflatex -interaction=nonstopmode -halt-on-error -file-line-error -output-directory="$texout" paper/A249107.tex
 ```
 
-The version suffix and DOI sentinel remain provisional. Scientific tables,
-proofs and bounds are unchanged from v2. Version 4 restores the conventional
-script references after the v3 package-path update; v3 remains local history.
+The result is `$texout/A249107.pdf`. Repeat if LaTeX requests another pass;
+the settled log should contain no errors or warnings. Creation timestamps and
+PDF identifiers can differ across rebuilds, so the delivered PDF has its own
+SHA-256 in `checks.sha256`. `.gitignore` excludes TeX auxiliaries, Python
+caches and the locally compiled C executable; it does not exclude the PDF.
 
 `run.tgz` contains 121 indexed evidence members (108575 uncompressed content
 bytes), plus its index. `dev.tgz` contains 18 indexed members (1043240 content

@@ -1,0 +1,12 @@
+# Generated TeX auxiliary files; the manuscript PDF is a tracked deliverable.
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+# Generated Python files and the optional local C build.
+__pycache__/
+*.py[cod]
+/src/a249107

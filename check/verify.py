@@ -47,7 +47,9 @@ def short_path(name, directory=False):
     for i, part in enumerate(p.parts):
         file_part = i == len(p.parts)-1 and not directory
         stem = (Path(part).stem if file_part else part).lstrip('.')
-        exception = file_part and Path(part).suffix.lower() in ('.tex', '.c', '.py')
+        # The author explicitly requires this repository control file.
+        control = name == '.gitignore' and file_part
+        exception = control or (file_part and Path(part).suffix.lower() in ('.tex', '.c', '.py'))
         need(stem and (exception or len(stem) <= 8), 'long ordinary basename: '+name)
 
 
