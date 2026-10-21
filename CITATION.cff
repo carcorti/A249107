@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying article and the exact computational package. This file contains provisional release metadata."
+type: software
+title: "OEIS A249107: exact extension and homothetic structure"
+authors:
+  - family-names: "Corti"
+    given-names: "Carlo"
+    email: "carlo.corti@outlook.com"
+version: "v1.0"
+date-released: "2026-10-21"
+license: MIT
+repository-code: "https://github.com/carcorti/A249107"
+doi: "10.5281/zenodo.xxxxxxxx"
+url: "https://doi.org/10.5281/zenodo.xxxxxxxx"
+abstract: >-
+  Exact C17 enumeration and independently checkable positive witnesses for the
+  sixteen-term local prefix of OEIS A249107. Four completed stages cover
+  380264132 through 30429212500 with fifty sealed segments and six additional
+  consecutive terms. The package includes fixed-form scale analysis, eleven
+  observed primitive ordered forms, finite trajectory results, original run
+  evidence and runnable validators. Full negative coverage remains dependent
+  on the executed implementation, its finite-domain primality premise and the
+  inherited ten-term baseline; finite independent windows are explicitly scoped.
+keywords:
+  - arithmetic derivative
+  - OEIS A249107
+  - exact enumeration
+  - Pythagorean tuples
+  - homothetic classes
+  - reproducible computation
+preferred-citation:
+  type: article
+  title: "Arithmetic-Derivative Pythagorean 7-Tuples: Exact Extension and Homothetic Structure of OEIS A249107"
+  authors:
+    - family-names: "Corti"
+      given-names: "Carlo"
+      email: "carlo.corti@outlook.com"
+  year: 2026
+  doi: "10.5281/zenodo.xxxxxxxx"
+  url: "https://doi.org/10.5281/zenodo.xxxxxxxx"
